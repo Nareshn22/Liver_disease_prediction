@@ -1,0 +1,93 @@
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liver Disease Predictor</title>
+    <link rel="stylesheet" type = "text/css" href = "{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="{% static 'js/script.js' %}"></script>
+
+</head>
+<body>
+    <header>
+        <h1>Liver Disease Predictor</h1>
+        <nav>
+          <ul class="navbar">
+            <li><a href="{% url 'home' %}"><i class="fa-solid fa-house"></i></a></li>
+            <li><a href="/admin/"><i class="fa-solid fa-user"></i></a></li>
+          </ul>      
+        </nav>
+      </header>
+    <div id="main" class = "main">
+        <form id="prediction-form" method="post">
+            {% csrf_token %}
+            <label for="feature1">Age:</label>
+            <input type="text" id="feature1" name="feature1" required>
+            <p id="feature1Validation" class="validationMessage"></p>
+            
+            <label for="feature2">Direct Bilirubin:</label>
+            <input type="text" id="feature2" name="feature2" required>
+            <p id="feature2Validation" class="validationMessage"></p>
+            
+            <label for="feature3">Alkaline Phosphotase:</label>
+            <input type="text" id="feature3" name="feature3" required>
+            <p id="feature3Validation" class="validationMessage"></p>
+            
+            <label for="feature4">Alamine Aminotransferase:</label>
+            <input type="text" id="feature4" name="feature4" required>
+            <p id="feature4Validation" class="validationMessage"></p>
+            
+            <label for="feature5">Aspartate Aminotransferase:</label>
+            <input type="text" id="feature5" name="feature5" required>
+            <p id="feature5Validation" class="validationMessage"></p>
+            
+            <label for="feature6">Total Proteins:</label>
+            <input type="text" id="feature6" name="feature6" required>
+            <p id="feature6Validation" class="validationMessage"></p>
+            
+            <label for="feature7">Albumin:</label>
+            <input type="text" id="feature7" name="feature7" required>
+            <p id="feature7Validation" class="validationMessage"></p>
+            
+            <label for="feature8">Albumin and Globulin Ratio:</label>
+            <input type="text" id="feature8" name="feature8" required>
+            <p id="feature8Validation" class="validationMessage"></p>
+            
+            <label for="feature9">Gender (Female):</label>
+            <input type="text" id="feature9" name="feature9" required>
+            <p id="feature9Validation" class="validationMessage"></p>
+            
+            <label for="feature10">Gender (Male):</label>
+            <input type="text" id="feature10" name="feature10" required>
+            <p id="feature10Validation" class="validationMessage"></p>
+            <button type="submit">Predict</button>
+
+        </form>
+        <div id="visualizationDiv" style="display: none;">
+            <img id="visualizationImg" src="{% static 'images/feature_importance.png' %}" alt="Feature Importance">
+        </div>     
+    </div>
+
+    <!-- Modal for displaying prediction -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modalContent"></p>
+        </div>
+    </div>
+
+    <a id="downloadReportBtn" href="#" style="display: none; margin-top: 10px;" class="btn btn-success">
+        <i class="fa fa-download"></i> Download Report
+    </a>
+    
+</body>
+</html>
+
+
+
+
+
